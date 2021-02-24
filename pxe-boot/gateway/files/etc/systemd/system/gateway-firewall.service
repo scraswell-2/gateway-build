@@ -1,0 +1,13 @@
+[Unit]
+Description=Gateway Network Firewall Configuration Service
+After=gateway-interfaces.service
+Before=gateway-internet.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/gateway-firewall start
+ExecStop=/usr/local/sbin/gateway-firewall stop
+
+[Install]
+WantedBy=multi-user.target

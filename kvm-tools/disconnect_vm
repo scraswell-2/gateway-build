@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TAP_DEV=${1}
+BRIDGE=${2}
+IP=$(which ip)
+
+echo "[DISCONNECT-VM] Detaching TAP device ${TAP_DEV} from bridge ${BRIDGE}..."
+${IP} link set dev ${TAP_DEV} nomaster
+${IP} link set dev ${TAP_DEV} down

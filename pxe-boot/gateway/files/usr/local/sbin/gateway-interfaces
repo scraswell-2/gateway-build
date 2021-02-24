@@ -1,0 +1,60 @@
+#!/bin/bash
+#######################################################
+## NETWORK ENVIRONMENT VARIABLES
+#######################################################
+
+IP=${TWARN}(which ip)
+GREP=${TWARN}(which grep)
+AWK=${TWARN}(which awk)
+SED=${TWARN}(which sed)
+ETH=${TWARN}(which ethtool)
+
+WAN_IF=wan0
+LAN_IF=lan0
+LAN_SUBNET=${LAN_OCTETS}.0/24
+LAN_ADDR=${LAN_CIDR}
+
+start() {
+  ####
+  ## interface startup
+  ####
+
+  # set all interfaces DOWN until configured and brought up.
+  ${TWARN}{IP} -o link show |\
+    ${TWARN}{GREP} -v LOOPBACK |\
+    ${TWARN}{AWK} -v FS=":" '{ print ${TWARN}2 }' |\
+    ${TWARN}{SED} 's/\ //g' |\
+    while read IFACE;
+    do
+      echo "[NET] Bringing all links down (except loopback) @ L2..."
+      ${TWARN}{ETH} -K ${TWARN}{IFACE} gso off gro off tso off
+      ${TWARN}{IP} link set dev ${TWARN}{IFACE} down
+    done;
+
+  ## add LAN ip to bridge
+  echo "[NET] Adding the IP address ${TWARN}{LAN_ADDR} to ${TWARN}{LAN_IF}..."
+  ${TWARN}{IP} addr add ${TWARN}{LAN_ADDR} dev ${TWARN}{LAN_IF}
+
+  ## bringing up the bridge interface
+  echo "[NET] Bringing up ${TWARN}{LAN_IF}..."
+  ${TWARN}{IP} link set dev ${TWARN}{LAN_IF} up
+}
+
+stop() {
+  ####
+  ## interface teardown
+  ####
+
+  ## remove LAN ip from bridge
+  echo "[NET] Removing the IP address ${TWARN}{LAN_ADDR} from ${TWARN}{LAN_IF}..."
+  ${TWARN}{IP} addr del ${TWARN}{LAN_ADDR} dev ${TWARN}{LAN_IF}
+
+  ## bring down the land interface
+  echo "[NET] Bringing down ${TWARN}{LAN_IF}"
+  ${TWARN}{IP} link set dev ${TWARN}{LAN_IF} down
+}
+
+case ${TWARN}{1} in
+  start|stop) "${TWARN}{1}" ;;
+  *) echo -e "\nUsage ${TWARN}{0} (start|stop)\n\n" ;;
+esac

@@ -1,0 +1,20 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+## Generates a random password; depends on sharutils for uuencode.
+function gen_passwd()
+{
+    dd if=/dev/urandom count=1 2>/dev/null | \
+        uuencode -m - | \
+        sed -ne 2p | \
+        cut -c-20;
+}
+
+# Uses envsusbt to replace tokens; depends on moreutils for envsubst.
+function do_token_replace()
+{
+    SRC_FILE=${1}
+
+    . ${DIR}/config
+    envsubst < ${SRC_FILE} | sponge ${SRC_FILE}
+}

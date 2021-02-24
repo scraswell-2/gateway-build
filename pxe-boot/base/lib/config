@@ -1,0 +1,16 @@
+#!/bin/bash
+#############################
+# configuration values
+#############################
+export TWARN='$'
+export HOME_DOMAIN="at.home"
+export TFTP_ROOT="/home/tftp"
+export WEB_ROOT="/home/www-data"
+
+export LAN_OCTETS="192.168.121"
+export LAN_OCTETS_REVERSED="121.168.192"
+export LAN_IP="${LAN_OCTETS}.1"
+export LAN_CIDR="${LAN_IP}/24"
+
+export ADMIN_USER_NAME="sean"
+export ADMIN_USER_PUBKEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD3ViucuaLv0hEmFx3sNCWonzmfKMEVJ6RU0tblDX9TRhKEaGNzJxMv9xSBhCqFAZbjppHURWqPyHI/5u/pXg9CwU9eLCGXf+ass19fto2j7ppcRwjG+7gheKAGTk8fjHf7I7klyGthig+H5HeATyCY/zQ2D2TswHSC5ulsQinm+bmchw+A55huRn1cE85F/3u5eWcOESc8r4WdVgmNIFY4eBpP/EOERwZTjI1MxpBsL9qJskYAaCE6q4srfW+XZd6gx4O93bon0h6TnK+w3aDOX8yRi97GEDk68ps/1k4Tyr/MUq90x7jq3mnbrLJpC5NQ792XHEhYKE0CtP0Upq8ekTQkia6ygJ77h+lvrPszqezavom/iytu2B1L5jaVW2hgxT+OgEGid5MnChdSMf8Qi4nbCFhiz5lCr5oLZswIuPxRKr7aTldlytbZf1wBa6RM3BSF+M29QYWzW6yDVeDWywWg9rf/acTD6lmHU9ze/S++umBE7Qq+jZdBPB4hTvuWNg6PfOQuF/gV8YJO7XZp8N+OkwkNavVnTm7DYPhtrPfxpBAl0wr81DetJ1tTvZ3whu/CemM+6BaAqrYxcY5+7bbQF6h7EEzFOeEC4UX9Ngy0NXiyWJOjEjoK1bQdZ84NJoWW9nf4DGKu7dXGjl68+TuRv/5aJdlvYfsUMVp8wQ=="

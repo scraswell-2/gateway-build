@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TAP_DEV=${1}
+BRIDGE=${2}
+IP=$(which ip)
+
+echo "[CONNECT-VM] Attaching TAP device ${TAP_DEV} to bridge ${BRIDGE}..."
+${IP} link set dev ${TAP_DEV} up
+${IP} link set dev ${TAP_DEV} master ${BRIDGE}

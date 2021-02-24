@@ -1,0 +1,13 @@
+[Unit]
+Description=Gateway Interface Configuration Service
+Before=gateway-firewall.service
+Before=gateway-internet.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/gateway-interfaces start
+ExecStop=/usr/local/sbin/gateway-interfaces stop
+
+[Install]
+WantedBy=multi-user.target

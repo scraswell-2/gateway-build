@@ -1,0 +1,47 @@
+${TWARN}TTL 604800     ; 1 week
+@   IN          SOA ${HOME_DOMAIN}.   dns.${HOME_DOMAIN}.   (
+                2013100902 ; serial
+                604800     ; refresh (1 week)
+                86400      ; retry (1 day)
+                2419200    ; expire (4 weeks)
+                604800     ; minimum (1 week)
+                )
+
+@                           NS    ns1.${HOME_DOMAIN}.
+
+ns1                         A     ${LAN_OCTETS}.1
+gateway                     CNAME ns1.${HOME_DOMAIN}.
+gitlab                      CNAME old-gateway.${HOME_DOMAIN}.
+unifi-controller            CNAME old-gateway.${HOME_DOMAIN}.
+bitwarden                   CNAME old-gateway.${HOME_DOMAIN}.
+
+unifi-garage                A     ${LAN_OCTETS}.8
+unifi-home                  A     ${LAN_OCTETS}.9
+unifi-aclr                  A     ${LAN_OCTETS}.10
+mx410                       A     ${LAN_OCTETS}.11
+
+openhabian                  A     ${LAN_OCTETS}.12
+controller                  CNAME openhabian.${HOME_DOMAIN}.
+
+sean-iphone                 A     ${LAN_OCTETS}.13
+shel-iphone                 A     ${LAN_OCTETS}.14
+
+dlink-cam                   A     ${LAN_OCTETS}.15
+monitor                     CNAME dlink-cam.${HOME_DOMAIN}.
+
+arcade-box                  A     ${LAN_OCTETS}.16
+sean-desktop                A     ${LAN_OCTETS}.17
+shel-macbook                A     ${LAN_OCTETS}.18
+sean-macbook                A     ${LAN_OCTETS}.19
+wii-u                       A     ${LAN_OCTETS}.20
+ps3                         A     ${LAN_OCTETS}.21
+atv-bedroom                 A     ${LAN_OCTETS}.22
+atv-familyroom              A     ${LAN_OCTETS}.23
+home-pc                     A     ${LAN_OCTETS}.24
+seans-ipad                  A     ${LAN_OCTETS}.25
+seans-ipad2                 A     ${LAN_OCTETS}.26
+monitor-iphone              A     ${LAN_OCTETS}.27
+samsung-tv                  A     ${LAN_OCTETS}.28
+atv-entertainment-room      A     ${LAN_OCTETS}.29
+sean-iphone2                A     ${LAN_OCTETS}.30
+old-gateway                 A     ${LAN_OCTETS}.104

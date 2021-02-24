@@ -1,0 +1,35 @@
+${TWARN}TTL    604800
+@           IN      SOA     ${LAN_OCTETS_REVERSED}.in-addr.arpa.      dns.${HOME_DOMAIN}.    (
+                13          ; Serial
+                604800      ; Refresh
+                86400       ; Retry
+                2419200     ; Expire
+                604800 )    ; Negative Cache TTL
+
+@      IN     NS    ns1.${HOME_DOMAIN}.
+
+1      IN    PTR    gateway.${HOME_DOMAIN}.
+8      IN    PTR    unifi-garage.${HOME_DOMAIN}.
+9      IN    PTR    unifi-home.${HOME_DOMAIN}.
+10     IN    PTR    unifi-aclr.${HOME_DOMAIN}.
+11     IN    PTR    mx410.${HOME_DOMAIN}.
+12     IN    PTR    openhabian.${HOME_DOMAIN}.
+13     IN    PTR    sean-iphone.${HOME_DOMAIN}.
+14     IN    PTR    shel-iphone.${HOME_DOMAIN}.
+15     IN    PTR    dlink-cam.${HOME_DOMAIN}.
+16     IN    PTR    arcade-box.${HOME_DOMAIN}.
+17     IN    PTR    sean-desktop.${HOME_DOMAIN}.
+18     IN    PTR    shel-macbook.${HOME_DOMAIN}.
+19     IN    PTR    sean-macbook.${HOME_DOMAIN}.
+20     IN    PTR    wii-u.${HOME_DOMAIN}.
+21     IN    PTR    ps3.${HOME_DOMAIN}.
+22     IN    PTR    atv-bedroom.${HOME_DOMAIN}.
+23     IN    PTR    atv-familyroom.${HOME_DOMAIN}.
+24     IN    PTR    home-pc.${HOME_DOMAIN}.
+25     IN    PTR    seans-ipad.${HOME_DOMAIN}.
+26     IN    PTR    seans-ipad2.${HOME_DOMAIN}.
+27     IN    PTR    monitor-iphone.${HOME_DOMAIN}.
+28     IN    PTR    samsung-tv.${HOME_DOMAIN}.
+29     IN    PTR    atv-entertainment-room.${HOME_DOMAIN}.
+30     IN    PTR    sean-iphone2.${HOME_DOMAIN}.
+104    IN    PTR    old-gateway.${HOME_DOMAIN}.

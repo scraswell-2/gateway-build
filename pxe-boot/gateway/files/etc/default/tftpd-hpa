@@ -1,0 +1,6 @@
+# /etc/default/tftpd-hpa
+
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/home/tftp"
+TFTP_ADDRESS="${LAN_OCTETS}.1:69"
+TFTP_OPTIONS="--secure"

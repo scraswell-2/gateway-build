@@ -1,0 +1,11 @@
+[Unit]
+Description=Port-Knocking Daemon
+After=gateway-interfaces.service
+
+[Service]
+Restart=on-failure
+RestartSec=3
+ExecStart=/usr/sbin/knockd --config /etc/gateway/knockd.conf --interface wan0
+
+[Install]
+WantedBy=multi-user.target

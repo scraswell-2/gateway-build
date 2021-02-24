@@ -1,0 +1,41 @@
+#!/bin/bash
+#######################################################
+## NETWORK ENVIRONMENT VARIABLES
+#######################################################
+WAN_IF=wan0
+IP=$(which ip)
+DHCLIENT=$(which dhclient)
+CONF=/etc/gateway/dhclient.conf
+
+#######################################################
+## INTERNET CONNECTION SETUP
+#######################################################
+start() {
+  ## bringing up WAN interface
+  echo "[WAN] Bringing up WAN (Internet) interface..."
+  ${IP} link set dev ${WAN_IF} up
+
+  ## start DHCP on WAN interface
+  echo "[WAN] Starting DHCP client on the WAN interface..."
+  ${DHCLIENT} -4 -v -cf ${CONF} -pf /run/dhclient.${WAN_IF}.pid -lf /var/lib/dhcp/dhclient.${WAN_IF}.leases ${WAN_IF}
+
+
+}
+
+#######################################################
+## INTERNET CONNECTION TEARDOWN
+#######################################################
+stop() {
+  ## stop DHCP on WAN interface
+  echo "[NET] Stopping DHCP client on the WAN interface..."
+  ${DHCLIENT} -r -4 -v -cf ${CONF} -pf /run/dhclient.${WAN_IF}.pid -lf /var/lib/dhcp/dhclient.${WAN_IF}.leases ${WAN_IF}
+
+  ## bringing down WAN interface
+  echo "[WAN] Bringing down WAN (Internet) interface..."
+  ${IP} link set dev ${WAN_IF} down
+}
+
+case ${1} in
+  start|stop) "${1}" ;;
+  *) echo -e "\nUsage ${0} (start|stop)\n\n" ;;
+esac
