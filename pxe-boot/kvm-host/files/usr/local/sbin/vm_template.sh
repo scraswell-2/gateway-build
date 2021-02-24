@@ -33,12 +33,17 @@ start() {
             -device virtio-scsi-pci,id=scsi0,iothread=iothread1 \
             -drive file=/dev/disk/by-id/ata-KINGSTON_SNV425S264GB_07TA50000160,if=none,format=raw,discard=unmap,aio=native,cache=none,id=scsi0 \
             -device scsi-hd,drive=scsi0,bus=scsi0.0 \
+            -object iothread,id=iothread2 \
+            -device virtio-scsi-pci,id=scsi1,iothread=iothread2 \
+            -drive file=/dev/disk/by-id/usb-WD_My_Book_25EE_5758313144323941304A3331-0:0,if=none,format=raw,discard=unmap,aio=native,cache=none,id=scsi1 \
+            -device scsi-hd,drive=scsi1,bus=scsi1.0 \
             -device virtio-net,netdev=network0,mac=01:01:01:00:00:3e \
-            -netdev tap,id=network0,ifname=${BACKUP_VM_TAP_DEVICE},script=/tmp/${BACKUP_VM_IFUP},downscript=no,vhost=on \
+            -netdev tap,id=network0,ifname=${TAP_DEV},script=no,downscript=no,vhost=on \
             -device nec-usb-xhci,id=xhci \
             -device usb-tablet,bus=xhci.0 \
             -vga std \
-            -monitor pipe:${PIPE_BASE}
+            -monitor pipe:${PIPE_BASE} && \
+    /usr/local/share/connect-vm ${TAP_DEV} ${BRIDGE_NAME}
 
     echo "[VM] Backup virtual machine PID == $(cat ${PIDFILE})"
     echo "change vnc password password" > ${PIPE_IN}

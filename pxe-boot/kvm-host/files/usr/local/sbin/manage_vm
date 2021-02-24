@@ -26,10 +26,10 @@ fi
 
 TAP_DEV=tap0
 #######################################################
-## START-BACKUP_VM SCRIPT
+## START-VM SCRIPT
 #######################################################
 start() {
-    echo "[VM] Starting backup virtual machine..."
+    echo "[VM] Starting virtual machine..."
 
     mkfifo ${PIPE_IN} ${PIPE_OUT} && \
         qemu-system-x86_64 \
@@ -53,7 +53,7 @@ start() {
             -monitor pipe:${PIPE_BASE} && \
         /usr/local/share/connect-vm ${TAP_DEV} ${BRIDGE_NAME}
 
-    echo "[VM] Backup virtual machine PID == $(cat ${PIDFILE})"
+    echo "[VM] Virtual machine PID == $(cat ${PIDFILE})"
     echo "change vnc password password" > ${PIPE_IN}
 }
 
@@ -63,7 +63,7 @@ start() {
 stop() {
     /usr/local/share/disconnect-vm ${TAP_DEV} ${BRIDGE_NAME}
 
-    echo "[VM] Stopping backup virtual machine..."
+    echo "[VM] Stopping virtual machine..."
     echo "system_powerdown" > ${PIPE_IN}
 
     echo -n "[VM] waiting for stop"
