@@ -7,8 +7,8 @@ export HOME_DOMAIN="at.home"
 export TFTP_ROOT="/home/tftp"
 export WEB_ROOT="/home/www-data"
 
-export LAN_OCTETS="192.168.121"
-export LAN_OCTETS_REVERSED="121.168.192"
+export LAN_OCTETS="192.168.122"
+export LAN_OCTETS_REVERSED="122.168.192"
 export LAN_IP="${LAN_OCTETS}.1"
 export LAN_CIDR="${LAN_IP}/24"
 
