@@ -9,17 +9,16 @@ ${TWARN}TTL    604800
 @      IN     NS    ns1.${HOME_DOMAIN}.
 
 1      IN    PTR    gateway.${HOME_DOMAIN}.
+4      IN    PTR    gitlab.${HOME_DOMAIN}.
 8      IN    PTR    unifi-garage.${HOME_DOMAIN}.
 9      IN    PTR    unifi-home.${HOME_DOMAIN}.
 10     IN    PTR    unifi-aclr.${HOME_DOMAIN}.
 11     IN    PTR    mx410.${HOME_DOMAIN}.
 12     IN    PTR    openhabian.${HOME_DOMAIN}.
 13     IN    PTR    sean-iphone.${HOME_DOMAIN}.
-14     IN    PTR    shel-iphone.${HOME_DOMAIN}.
 15     IN    PTR    dlink-cam.${HOME_DOMAIN}.
 16     IN    PTR    arcade-box.${HOME_DOMAIN}.
 17     IN    PTR    sean-desktop.${HOME_DOMAIN}.
-18     IN    PTR    shel-macbook.${HOME_DOMAIN}.
 19     IN    PTR    sean-macbook.${HOME_DOMAIN}.
 20     IN    PTR    wii-u.${HOME_DOMAIN}.
 21     IN    PTR    ps3.${HOME_DOMAIN}.

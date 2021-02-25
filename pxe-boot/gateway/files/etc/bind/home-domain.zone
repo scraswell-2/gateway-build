@@ -11,10 +11,10 @@ ${TWARN}TTL 604800     ; 1 week
 
 ns1                         A     ${LAN_OCTETS}.1
 gateway                     CNAME ns1.${HOME_DOMAIN}.
-gitlab                      CNAME old-gateway.${HOME_DOMAIN}.
 unifi-controller            CNAME old-gateway.${HOME_DOMAIN}.
 bitwarden                   CNAME old-gateway.${HOME_DOMAIN}.
 
+gitlab                      A     ${LAN_OCTETS}.4
 unifi-garage                A     ${LAN_OCTETS}.8
 unifi-home                  A     ${LAN_OCTETS}.9
 unifi-aclr                  A     ${LAN_OCTETS}.10
@@ -24,14 +24,12 @@ openhabian                  A     ${LAN_OCTETS}.12
 controller                  CNAME openhabian.${HOME_DOMAIN}.
 
 sean-iphone                 A     ${LAN_OCTETS}.13
-shel-iphone                 A     ${LAN_OCTETS}.14
 
 dlink-cam                   A     ${LAN_OCTETS}.15
 monitor                     CNAME dlink-cam.${HOME_DOMAIN}.
 
 arcade-box                  A     ${LAN_OCTETS}.16
 sean-desktop                A     ${LAN_OCTETS}.17
-shel-macbook                A     ${LAN_OCTETS}.18
 sean-macbook                A     ${LAN_OCTETS}.19
 wii-u                       A     ${LAN_OCTETS}.20
 ps3                         A     ${LAN_OCTETS}.21
