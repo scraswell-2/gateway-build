@@ -35,3 +35,6 @@ do
 done
 
 find ${TFTP_ROOT} -exec chown tftp:tftp {} \;
+
+install -Dv ${DIR}/../files/usr/local/sbin/update-pxe-boot.sh \
+    /usr/local/sbin/update-pxe-boot.sh
