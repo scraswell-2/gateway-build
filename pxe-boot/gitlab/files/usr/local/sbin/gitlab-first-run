@@ -6,7 +6,7 @@ DEBIAN_FRONTEND="noninteractive" EXTERNAL_URL="http://gitlab.at.home" apt instal
 
 systemctl disable gitlab-first-run.service
 
-sed -i.bak 's/http:\/\/gitlab\.at\.home/https:\/\/gitlab\.at\.home/g' /etc/gitlab/gitlab.rb
+curl -L -o /etc/gitlab/gitlab.rb http://gateway/gitlab/gitlab.rb
 
 gitlab-ctl reconfigure
 
