@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gitlab-ctl reconfigure && rm -v /etc/gitlab/.not_configured
