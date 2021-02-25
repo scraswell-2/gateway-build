@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gitlab-ctl reconfigure && rm -v /etc/gitlab/.not_configured
+EXTERNAL_URL="https://gitlab.at.home" apt install -y gitlab-ce && rm -v /etc/gitlab/.

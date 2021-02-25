@@ -14,8 +14,6 @@ apt -y install curl openssh-server ca-certificates perl
 
 curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | bash
 
-EXTERNAL_URL="https://gitlab.at.home" apt install -y gitlab-ce
-
 mkdir -pv /etc/gitlab/ssl
 
 curl -L -o /etc/gitlab/ssl/gitlab.at.home.crt "http://gateway.at.home/certs/gitlab.at.home.crt"
