@@ -1,5 +1,14 @@
 #!/bin/bash
 
-DEBIAN_FRONTEND="noninteractive" EXTERNAL_URL="http://gitlab.at.home" apt install -y gitlab-ce \
-    && rm -v /etc/gitlab/.
+rm -v /etc/gitlab/.not_configured
+
+DEBIAN_FRONTEND="noninteractive" EXTERNAL_URL="http://gitlab.at.home" apt install -y gitlab-ce
+
+systemctl disable gitlab-first-run.service
+
+sed -i.bak 's/http:\/\/gitlab\.at\.home/https:\/\/gitlab\.at\.home/g' /etc/gitlab/gitlab.rb
+
+gitlab-ctl reconfigure
+
+reboot
 
