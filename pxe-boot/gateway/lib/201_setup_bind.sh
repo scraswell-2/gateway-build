@@ -28,6 +28,9 @@ install -D ${DIR}/../files/etc/bind/named.conf.options /etc/bind/named.conf.opti
 do_token_replace /etc/bind/named.conf.options
 
 systemctl enable bind9.service
+
+install -Dv ${DIR}/../files/usr/local/sbin/update-dns.sh \
+    /usr/local/sbin/update-dns.sh
 ##############################################
 ## end install packages
 ##############################################

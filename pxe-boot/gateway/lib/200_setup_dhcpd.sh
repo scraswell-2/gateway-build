@@ -21,6 +21,9 @@ install -D ${DIR}/../files/etc/gateway/dhcpd.conf /etc/gateway/dhcpd.conf
 do_token_replace /etc/gateway/dhcpd.conf
 
 systemctl enable isc-dhcp-server.service
+
+install -Dv ${DIR}/../files/usr/local/sbin/update-dhcp-server.sh \
+    /usr/local/sbin/update-dhcp-server.sh
 ##############################################
 ## end install packages
 ##############################################
