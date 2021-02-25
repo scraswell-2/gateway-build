@@ -17,9 +17,6 @@ curl -Lk -o ${NETBOOT_FILE} ${NETBOOT_URL}
 sudo tar -xvf ${NETBOOT_FILE} -C ${TFTP_ROOT}
 rm -v ${NETBOOT_FILE}
 
-tar -C /opt -c -z -v -f ${TFTP_ROOT}/post-install.tar.gz ./post-install
-chown tftp:tftp ${TFTP_ROOT}/post-install.tar.gz
-
 install -Dv ${DIR}/../files${TFTP_ROOT}/debian-installer/amd64/boot-screens/txt.cfg \
     ${TFTP_ROOT}/debian-installer/amd64/boot-screens/txt.cfg
 
