@@ -35,4 +35,5 @@ options {
         };
 
         max-ncache-ttl 0;
+        max-cache-size 100m;
 };
