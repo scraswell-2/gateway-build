@@ -1,3 +1,5 @@
 #!/bin/bash
 
-EXTERNAL_URL="https://gitlab.at.home" apt install -y gitlab-ce && rm -v /etc/gitlab/.
+DEBIAN_FRONTEND="noninteractive" EXTERNAL_URL="http://gitlab.at.home" apt install -y gitlab-ce \
+    && rm -v /etc/gitlab/.
+
