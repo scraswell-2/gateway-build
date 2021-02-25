@@ -34,4 +34,4 @@ do
     install -Dv ${PRESEED_FILE} ${DESTINATION_FILE}
 done
 
-find ${TFTP_ROOT} -exec chown -v tftp:tftp {} \;
+find ${TFTP_ROOT} -exec chown tftp:tftp {} \;
