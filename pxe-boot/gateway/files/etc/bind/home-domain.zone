@@ -11,8 +11,8 @@ ${TWARN}TTL 604800     ; 1 week
 
 ns1                         A     ${LAN_OCTETS}.1
 gateway                     CNAME ns1.${HOME_DOMAIN}.
-unifi-controller            CNAME old-gateway.${HOME_DOMAIN}.
-bitwarden                   CNAME old-gateway.${HOME_DOMAIN}.
+unifi-controller            CNAME docker.${HOME_DOMAIN}.
+bitwarden                   CNAME docker.${HOME_DOMAIN}.
 
 gitlab                      A     ${LAN_OCTETS}.4
 unifi-garage                A     ${LAN_OCTETS}.8
@@ -43,3 +43,4 @@ samsung-tv                  A     ${LAN_OCTETS}.28
 atv-entertainment-room      A     ${LAN_OCTETS}.29
 sean-iphone2                A     ${LAN_OCTETS}.30
 old-gateway                 A     ${LAN_OCTETS}.104
+docker                      A     ${LAN_OCTETS}.114

@@ -32,3 +32,4 @@ ${TWARN}TTL    604800
 29     IN    PTR    atv-entertainment-room.${HOME_DOMAIN}.
 30     IN    PTR    sean-iphone2.${HOME_DOMAIN}.
 104    IN    PTR    old-gateway.${HOME_DOMAIN}.
+114    IN    PTR    docker.${HOME_DOMAIN}.
