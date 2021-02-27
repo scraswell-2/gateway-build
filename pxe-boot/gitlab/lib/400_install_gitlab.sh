@@ -42,4 +42,7 @@ install -D ${DIR}/../files/etc/systemd/system/gitlab-first-run.service \
 install -D -m 0744 ${DIR}/../files/usr/local/sbin/gitlab-first-run \
     /usr/local/sbin/gitlab-first-run
 
+install -D -m 0744 ${DIR}/../files/usr/local/sbin/initial-setup.rb \
+    /usr/local/sbin/initial-setup.rb
+
 systemctl enable gitlab-first-run.service

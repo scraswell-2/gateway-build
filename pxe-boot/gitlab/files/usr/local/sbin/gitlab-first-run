@@ -11,11 +11,15 @@ curl -L -o /etc/gitlab/gitlab.rb http://gateway/gitlab/gitlab.rb
 gitlab-ctl reconfigure
 
 GITLAB_URL="https://gitlab.at.home"
-TMP_RB="/tmp/get_token.rb"
-echo 'puts Gitlab::CurrentSettings.current_application_settings.runners_registration_token' > ${TMP_RB}
-TOKEN=$(gitlab-rails runner ${TMP_RB})
-rm ${TMP_RB}
+SETUP_RB="/usr/local/sbin/initial-setup.rb"
+TOKEN=$(gitlab-rails runner ${SETUP_RB})
 
-gitlab-runner register --non-interactive --name "gitlab.at.home-default" --url "${GITLAB_URL}" --registration-token "${TOKEN}" --executor "shell" --locked=false
+gitlab-runner register \
+    --non-interactive \
+    --name "gitlab.at.home-default" \
+    --url "${GITLAB_URL}" \
+    --registration-token "${TOKEN}" \
+    --executor "shell" \
+    --locked=false
 
 reboot
