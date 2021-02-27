@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "device_add usb-host,bus=ehci.0,port=1,vendorid=0x05ac,productid=0x12a8,id=iphone" > /var/run/qemu-home_pc.in

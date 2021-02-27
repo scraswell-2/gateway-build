@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "device_del iphone" > /var/run/qemu-home_pc.in

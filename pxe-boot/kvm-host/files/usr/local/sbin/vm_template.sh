@@ -4,7 +4,7 @@
 #######################################################
 BRIDGE_NAME=br0
 
-VM_NAME=
+VM_NAME=home_pc
 
 PIDFILE=/run/${VM_NAME}.pid
 TAP_DEV=tap0
@@ -17,7 +17,7 @@ PIPE_OUT=${PIPE_BASE}.out
 ## START-BACKUP_VM SCRIPT
 #######################################################
 start() {
-    echo "[VM] Starting backup virtual machine..."
+    echo "[VM] Starting virtual machine..."
 
     mkfifo ${PIPE_IN} ${PIPE_OUT} && \
         qemu-system-x86_64 \
@@ -39,24 +39,48 @@ start() {
             -device scsi-hd,drive=scsi1,bus=scsi1.0 \
             -device virtio-net,netdev=network0,mac=01:01:01:00:00:3e \
             -netdev tap,id=network0,ifname=${TAP_DEV},script=no,downscript=no,vhost=on \
-            -device nec-usb-xhci,id=xhci \
-            -device usb-tablet,bus=xhci.0 \
+            -usb \
+            -device usb-ehci,id=ehci \
+            -device usb-tablet,bus=usb-bus.0 \
             -vga std \
             -monitor pipe:${PIPE_BASE} && \
-    /usr/local/share/connect-vm ${TAP_DEV} ${BRIDGE_NAME}
+    /usr/local/sbin/connect-vm ${TAP_DEV} ${BRIDGE_NAME}
 
-    echo "[VM] Backup virtual machine PID == $(cat ${PIDFILE})"
+    echo "[VM] virtual machine PID == $(cat ${PIDFILE})"
     echo "change vnc password password" > ${PIPE_IN}
 }
 
 #######################################################
-## STOP-BACKUP_VM SCRIPT
+## STOP SCRIPT
 #######################################################
 stop() {
-    echo "[VM] Stopping backup virtual machine..."
+    /usr/local/sbin/disconnect-vm ${TAP_DEV} ${BRIDGE_NAME}
+
+    echo "[VM] Stopping virtual machine..."
     echo "system_powerdown" > ${PIPE_IN}
 
     echo -n "[VM] waiting for stop"
+    while [ -f "${PIDFILE}" ]
+    do
+        echo -n "."
+        sleep 1s
+    done
+
+    echo ""
+    echo "[VM] stopped."
+    rm -v ${PIPE_IN} ${PIPE_OUT}
+}
+
+#######################################################
+## QUIT SCRIPT
+#######################################################
+quit() {
+    /usr/local/sbin/disconnect-vm ${TAP_DEV} ${BRIDGE_NAME}
+
+    echo "[VM] Quitting Virtual Machine Emulation..."
+    echo "quit" > ${PIPE_IN}
+
+    echo -n "[VM] waiting for stop..."
     while [ -f "${PIDFILE}" ]
     do
         echo -n "."

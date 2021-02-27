@@ -1,0 +1,4 @@
+sitemap home label="Home"
+{
+	Switch item=channel1
+}

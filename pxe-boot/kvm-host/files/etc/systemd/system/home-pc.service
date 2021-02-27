@@ -1,0 +1,12 @@
+[Unit]
+Description=home-pc VM Service
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/kvm_home-pc start
+ExecStop=/usr/local/sbin/kvm_home-pc stop
+
+[Install]
+WantedBy=multi-user.target
