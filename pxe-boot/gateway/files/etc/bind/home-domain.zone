@@ -42,5 +42,5 @@ monitor-iphone              A     ${LAN_OCTETS}.27
 samsung-tv                  A     ${LAN_OCTETS}.28
 atv-entertainment-room      A     ${LAN_OCTETS}.29
 sean-iphone2                A     ${LAN_OCTETS}.30
-old-gateway                 A     ${LAN_OCTETS}.104
+kvm                         A     ${LAN_OCTETS}.104
 docker                      A     ${LAN_OCTETS}.114
