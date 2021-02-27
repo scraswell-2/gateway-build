@@ -1,0 +1,1 @@
+Switch channel1 "Garage Door" { gpio="pin:2 activelow:yes initialValue:high", expire="1s, command=OFF", autoupdate="false" }
