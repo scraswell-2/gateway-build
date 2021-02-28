@@ -1,1 +1,10 @@
 Switch channel1 "Garage Door" { gpio="pin:2 activelow:yes initialValue:high", expire="1s, command=OFF", autoupdate="false" }
+
+
+Switch GPIO_LAMP "Lamp" (LivingRoom) { gpio="pin:23 force:yes" }
+Contact GPIO_BUTTON "Button [%s]" (LivingRoom) { gpio="pin:24 activelow:yes" }
+
+
+exec:command:cc61f4948d
+
+Switch toggle_garage_door "Garage Door" <switch> { channel="exec:command:cc61f4948d:run" }
