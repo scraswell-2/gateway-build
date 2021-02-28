@@ -17,7 +17,6 @@ apt -y install openssh-server
 
 sed -i \
     -e 's/^#Port 22.*$/Port 59022/g' \
-    -e 's/^#PermitRootLogin prohibit-password.*$/PermitRootLogin no/g' \
     /etc/ssh/sshd_config
 
 systemctl enable sshd.service
