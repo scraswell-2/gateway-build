@@ -31,6 +31,7 @@ systemctl enable gitlab-runner.service
 
 mkdir -pv /etc/gitlab/ssl
 
+curl -L -o /etc/gitlab/trusted-certs/ca.pem "http://gateway.at.home/certs/ca.pem"
 curl -L -o /etc/gitlab/ssl/gitlab.at.home.crt "http://gateway.at.home/certs/gitlab.at.home.crt"
 curl -L -o /etc/gitlab/ssl/gitlab.at.home.key "http://gateway.at.home/certs/gitlab.at.home.key"
 
