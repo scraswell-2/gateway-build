@@ -1,0 +1,12 @@
+[Unit]
+Description=Network Firewall Configuration Service
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/firewall start
+ExecStop=/usr/local/sbin/firewall stop
+
+[Install]
+WantedBy=multi-user.target

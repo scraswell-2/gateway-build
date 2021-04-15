@@ -1,0 +1,11 @@
+[Unit]
+Description=Port-Knocking Daemon
+After=network-online.target
+
+[Service]
+Restart=on-failure
+RestartSec=3
+ExecStart=/usr/sbin/knockd --config /etc/knock/knockd.conf --interface eth0
+
+[Install]
+WantedBy=multi-user.target

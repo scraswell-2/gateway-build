@@ -1,0 +1,73 @@
+#!/bin/bash
+#######################################################
+## NETWORK ENVIRONMENT VARIABLES
+#######################################################
+WAN_IF=eth0
+
+FW=$(which iptables)
+
+start() {
+  ####
+  ## firewall startup
+  ####
+  echo "[FW] Resetting IPTables..."
+  ${FW} --table filter -F
+  ${FW} --table filter -X
+  ${FW} --table filter -Z
+  ${FW} --table nat -F
+  ${FW} --table nat -X
+  ${FW} --table nat -Z
+  ${FW} --table mangle -F
+  ${FW} --table mangle -X
+  ${FW} --table mangle -Z
+
+  # set packet filtering policies
+  echo "[FW] Setting the default packet filtering policies..."
+  ${FW} --table filter --policy INPUT DROP
+  ${FW} --table filter --policy FORWARD DROP
+  ${FW} --table filter --policy OUTPUT DROP
+
+  # allow already established connections
+  echo "[FW] Allowing all established connections to pass through..."
+  ${FW} --table filter --append INPUT --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+  ${FW} --table filter --append OUTPUT --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+  ${FW} --table filter --append FORWARD --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+
+  # allow this host to send
+  echo "[FW] Allowing this host to make outbound connections..."
+  ${FW} --table filter --append OUTPUT --jump ACCEPT
+
+  # enable IP forwarding for IPV4
+  echo "[FW] Enabling IP forwarding..."
+  echo "1" > /proc/sys/net/ipv4/ip_forward
+}
+
+stop() {
+  ####
+  ## Firewall Teardown
+  ####
+  # disable IP forwarding for IPV4
+  echo "[FW] Disabling IP forwarding..."
+  echo "0" > /proc/sys/net/ipv4/ip_forward
+  
+  # denying this host on send
+  echo "[FW] Denying this host the ability to make outbound connections..."
+  ${FW} --table filter --delete OUTPUT --jump ACCEPT
+
+  # denying already established connections
+  echo "[FW] Denying all established connections pass through..."
+  ${FW} --table filter --delete INPUT --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+  ${FW} --table filter --delete OUTPUT --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+  ${FW} --table filter --delete FORWARD --match conntrack --ctstate RELATED,ESTABLISHED --jump ACCEPT
+
+  ## set packet filtering policies
+  echo "[FW] Reverting the default packet filtering policies..."
+  ${FW} --table filter --policy INPUT ACCEPT
+  ${FW} --table filter --policy FORWARD ACCEPT
+  ${FW} --table filter --policy OUTPUT ACCEPT
+}
+
+case ${1} in
+  start|stop) "${1}" ;;
+  *) echo -e "\nUsage ${0} (start|stop)\n\n" ;;
+esac
